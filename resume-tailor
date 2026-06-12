@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# resume-tailor launcher — abstracts venv activation + .env loading + module call.
+# Usage: resume-tailor "<job-url>" [extra CLI flags]
+# Works from any directory; resolves its own install location.
+set -euo pipefail
+
+# Resolve the real directory of this script (follow symlinks).
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+ROOT="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+
+PYTHON="$ROOT/.venv/bin/python"
+if [ ! -x "$PYTHON" ]; then
+  echo "resume-tailor: virtualenv missing. Run $ROOT/install.sh first." >&2
+  exit 1
+fi
+
+# Load secrets/env (e.g. GEMINI_API_KEY) if present.
+if [ -f "$ROOT/.env.local" ]; then
+  set -a; . "$ROOT/.env.local"; set +a
+fi
+
+# Make sure a LaTeX engine is reachable (BasicTeX path on macOS).
+case ":$PATH:" in
+  *":/Library/TeX/texbin:"*) ;;
+  *) [ -d /Library/TeX/texbin ] && export PATH="/Library/TeX/texbin:$PATH" ;;
+esac
+
+# Run from the install root so the package imports and config auto-discovery
+# (./resume-tailor.toml) both resolve, regardless of the caller's CWD.
+cd "$ROOT"
+exec "$PYTHON" -m resume_tailor.cli "$@"

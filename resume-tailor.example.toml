@@ -1,0 +1,28 @@
+# resume-tailor configuration.
+# Copy to `resume-tailor.toml` (gitignored) and edit, or place at
+# ~/.config/resume-tailor/config.toml. Precedence: CLI flag > env var > this file > default.
+
+[paths]
+# Source LaTeX resume with % <TAILOR:...> markers.
+resume     = "~/workplace/resume-tailor/examples/sample_resume.tex"
+# Parent folder for all tailored output.
+output_dir = "~/Documents/Tailored_Resumes"
+
+[output]
+# Put each job's files in their own subfolder under output_dir.
+per_job_subdir  = true
+# Subfolder name template. Placeholders: {company} {title} {date} {stem}
+subdir_template = "{company}-{title}"
+
+[llm]
+provider = "gemini"  # gemini | openai | ollama | echo
+# Empty => provider default (gemini-flash-lite-latest, the free-tier model).
+model    = ""
+
+[profile]
+# Folder of .md/.txt files with extra achievements/content that don't fit on
+# the one-page resume. The LLM may draw FACTS from these (never invented) when
+# a job calls for experience not already on the resume. Empty => disabled.
+# Prefix files with 01_, 02_ to control ordering.
+context_dir = ""
+max_chars   = 12000

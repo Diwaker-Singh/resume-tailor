@@ -1,0 +1,121 @@
+%-------------------------------------------------------------------------------
+% Sample Resume — replace with your own .tex and add % <TAILOR:...> markers
+% around the prose you want the LLM to adapt per job application.
+% Compile with pdfLaTeX.
+%-------------------------------------------------------------------------------
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[top=0.4in,bottom=0in,left=0.55in,right=0.55in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{parskip}
+
+\definecolor{accent}{HTML}{0070C0}
+\colorlet{ACCENT}{accent}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accent,
+    linkcolor=accent,
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\hl}[1]{\textcolor{accent}{#1}}
+
+\titleformat{\section}
+    {\large\bfseries\color{accent}\uppercase}{}{0em}{}
+    [\vspace{-15pt}{\color{accent}\hrulefill}]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+\setlist[itemize,1]{leftmargin=14pt, itemsep=0pt, topsep=0pt, parsep=0pt,
+    label=\textcolor{accent}{$\bullet$}}
+\setlist[itemize,2]{leftmargin=14pt, itemsep=0pt, topsep=0pt, parsep=0pt, label=$\circ$}
+
+\newcommand{\role}[4]{%
+    \vspace{-2pt}\par\noindent
+    \begin{minipage}[t]{0.65\textwidth}
+        \textbf{\color{accent}#1}\hspace{4pt}\textit{#2}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\textwidth}
+        \raggedleft {\small\textbf{#3}} \\ {\small\textbf{\textit{#4}}}
+    \end{minipage}%
+    \par
+}
+\newcommand{\subrole}[1]{\vspace{-18pt}\par\noindent{\small\textbf{\textit{#1}}}\par\vspace{-5pt}}
+
+\begin{document}
+
+%-------------------- HEADER --------------------
+\begin{center}
+    {\Huge \textbf{YOUR NAME}} \\[5pt]
+    \href{mailto:you@example.com}{{\color{black}\faEnvelope}\ you@example.com} \quad
+    \href{https://www.linkedin.com/in/your-profile}{{\color{black}\faLinkedin}\ your-profile} \quad
+    \href{https://github.com/your-profile}{{\color{black}\faGithub}\ your-profile}
+\end{center}
+
+%-------------------- WORK EXPERIENCE --------------------
+\section*{Work Experience}
+
+\role{Company A}{Senior Software Engineer}{City, Country}{Jan 2023 -- Present}
+\subrole{Platform Team}
+\begin{itemize}
+% <TAILOR:company_a_bullets>
+    \item Led design and implementation of a distributed \hl{event ingestion}
+      platform processing \textbf{50M+} events/day with sub-second latency.
+    \item \hl{Reduced infrastructure costs by 30\%} through service consolidation
+      and right-sizing of \textbf{Kubernetes} resource limits.
+    \item Mentored 4 junior engineers, establishing code review standards and
+      on-call best practices across the team.
+% </TAILOR>
+\end{itemize}
+
+\role{Company B}{Software Engineer II}{City, Country}{Mar 2021 -- Dec 2022}
+\subrole{Data Infrastructure}
+\begin{itemize}
+% <TAILOR:company_b_bullets>
+    \item Built real-time \hl{streaming pipelines} with Apache Kafka and Flink,
+      reducing data freshness from 1 hour to \textbf{90 seconds}.
+    \item Designed a \hl{feature store} serving \textbf{200+ ML features} with
+      sub-millisecond p99 latency to production models.
+    \item Migrated legacy batch jobs to \hl{Apache Airflow}, improving
+      observability and reducing pipeline failures by \textbf{60\%}.
+% </TAILOR>
+\end{itemize}
+
+\role{Company C}{Software Engineer}{City, Country}{Jun 2019 -- Feb 2021}
+\subrole{Backend Services}
+\begin{itemize}
+% <TAILOR:company_c_bullets>
+    \item Developed \hl{RESTful microservices} in Go and Python handling
+      \textbf{10K+} requests per second at peak.
+    \item Implemented \hl{circuit-breaker} and retry logic improving service
+      availability from 99.5\% to \textbf{99.99\%}.
+    \item Wrote comprehensive integration tests achieving \textbf{95\%} coverage
+      and reducing production incidents by half.
+% </TAILOR>
+\end{itemize}
+
+%-------------------- EDUCATION --------------------
+\section*{Education}
+
+\noindent\makebox[\textwidth][s]{%
+    \textbf{Bachelor of Science in Computer Science}\hfill
+    University Name\hfill
+    \textbf{3.8 GPA}\hfill
+    \textit{2015 -- 2019}%
+}
+
+%-------------------- SKILLS --------------------
+\section*{Skills and Certifications}
+
+% <TAILOR:skills>
+\noindent\textbf{Languages:} Go, Python, TypeScript, Java, SQL. \textbf{Frameworks:} React, gRPC, Apache Flink, Kubernetes, Helm. \textbf{Domains:} Distributed Systems, Data Pipelines, System Design, Observability, On-Call Operations. \textbf{Tools:} Docker, Terraform, Prometheus, Grafana, Kafka, Airflow.
+% </TAILOR>
+
+\end{document}
