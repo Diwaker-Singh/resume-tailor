@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+out/
+*.aux
+*.log
+*.pdf
+.venv/
+.env.local
+.pytest_cache/
+resume-tailor.toml
+.DS_Store
+
+# build artifacts
+*.egg-info/
+build/
+dist/
+profile/*
+!profile/README.md
+examples/*_Resume.tex
+!examples/sample_resume.tex
+examples/Diwaker_*.tex
+*.bak
+*.diff
