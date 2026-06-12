@@ -23,7 +23,8 @@ structure, so your formatting is safe by construction.
 ## 1. Install
 
 ```bash
-cd ~/workplace/resume-tailor
+git clone https://github.com/Diwaker-Singh/resume-tailor.git
+cd resume-tailor
 ./install.sh
 ```
 
