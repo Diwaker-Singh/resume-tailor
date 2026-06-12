@@ -210,7 +210,7 @@ never in the config file.
 ---
 
 ## 6. Testing philosophy
-107 tests, fully offline (the `echo` provider + local HTML fixtures, `--no-pdf` where no
+72 tests, fully offline (the `echo` provider + local HTML fixtures, `--no-pdf` where no
 LaTeX engine). Compiler/integration tests auto-skip without a LaTeX engine. The suite is the
 regression guard: layout-safety invariants, JD prioritisation, line budgets, config
 precedence, provider registry, the shell scripts, and end-to-end pipeline wiring.
